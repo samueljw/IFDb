@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="/static/style/style.css" />
+		<title>IFDb</title>
+	</head>
+	<body>
+		<div class="nav-bar">
+			<img class="search-logo" src="/static/search.png" />
+			<div class="name-container">
+				<h1 class="name-logo">IFDb</h1>
+			</div>
+			<img class="location-logo" src="/static/location.png" />
+			<div class="search-input-container">
+				<form class="search-form">
+					<input type="text" name="focus" required class="search-input" placeholder="Search IFDb" />
+					<button type="submit" class="search">Search</button>
+				</form>
+			</div>
+
+			<div class="country-container">
+				<form class="country-form">
+					<select class="country-input" name="country" id="country" required>
+						<option disabled selected>Select your country</option>
+					</select>
+					<div class="country-flag"></div>
+				</form>
+			</div>
+		</div>
+
+		<div class="all-container"></div>
+
+		<div class="footer">
+			<div class="footer-top">
+				<div class="left">
+					<h1><a href="https://jwsamuel.netlify.app" target="_blank">Portfolio: jwsamuel.netlify.app</a></h1>
+					<h1>Email: jessewidjaja@gmail.com</h1>
+				</div>
+				<div class="right">
+					<div class="right-top">
+						<a href="https://developers.themoviedb.org/3" target="_blank"><img src="/static/tmdb.png" /></a>
+					</div>
+					<div class="right-bottom">
+						<a href="https://www.facebook.com/themoviedb" target="_blank"><img src="/static/facebook.png" /></a>
+						<a href="https://twitter.com/themoviedb" target="_blank"><img src="/static/twitter.png" /></a>
+						<a href="https://www.instagram.com/tmdbmovies" target="_blank"><img src="/static/instagram.png" /></a>
+					</div>
+				</div>
+			</div>
+			<div class="footer-bottom">
+				<p>IFDb © 2021</p>
+				<p>Code and design by <a href="https://jwsamuel.netlify.app" target="_blank">Jesse Samuel Widjaja</a></p>
+			</div>
+		</div>
+
+		<script type="module" src="/static/app.js"></script>
+	</body>
+</html>
