@@ -1,4 +1,4 @@
-let API_KEY = "4650e65f5dbe346c2dd18fbabec0eb1b";
+let API_KEY;
 
 const navBar = document.querySelector(".nav-bar");
 const nameLogo = document.querySelector(".name-logo");
