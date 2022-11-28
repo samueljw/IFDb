@@ -1,7 +1,4 @@
-import * as API from "../static/config.js";
-console.log(API.master_key);
-
-let API_KEY = master_key;
+let API_KEY = "4650e65f5dbe346c2dd18fbabec0eb1b";
 
 const navBar = document.querySelector(".nav-bar");
 const nameLogo = document.querySelector(".name-logo");
