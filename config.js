@@ -1,6 +1,6 @@
 const dotenv = require("dotenv");
-
 dotenv.config();
+
 module.exports = {
-	API_KEY: process.env.API_KEY,
+	master_key: process.env.API_KEY,
 };

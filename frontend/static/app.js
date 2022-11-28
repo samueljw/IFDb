@@ -1,6 +1,6 @@
-const { API_KEY } = require("./config");
+const { master_key } = require("..../config.js");
 
-let API_KEY = API_KEY;
+let API_KEY = master_key;
 
 const navBar = document.querySelector(".nav-bar");
 const nameLogo = document.querySelector(".name-logo");
