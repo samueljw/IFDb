@@ -1,3 +1,4 @@
+require("dotenv").config();
 let API_KEY = process.env.API_KEY;
 
 const navBar = document.querySelector(".nav-bar");
