@@ -1,5 +1,6 @@
-require("dotenv").config();
-let API_KEY = process.env.API_KEY;
+const { API_KEY } = require("./config");
+
+let API_KEY = API_KEY;
 
 const navBar = document.querySelector(".nav-bar");
 const nameLogo = document.querySelector(".name-logo");
