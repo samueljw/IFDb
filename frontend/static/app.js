@@ -1,4 +1,4 @@
-import { master_key } from "..../config.js";
+import { master_key } from "../static/config.js";
 
 let API_KEY = master_key;
 
