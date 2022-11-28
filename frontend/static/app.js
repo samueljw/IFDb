@@ -1,4 +1,4 @@
-const { master_key } = require("..../config.js");
+import { master_key } from "..../config.js";
 
 let API_KEY = master_key;
 
