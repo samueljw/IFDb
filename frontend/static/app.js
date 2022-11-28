@@ -1,4 +1,4 @@
-let API_KEY;
+let API_KEY = process.env.API_KEY;
 
 const navBar = document.querySelector(".nav-bar");
 const nameLogo = document.querySelector(".name-logo");
@@ -65,10 +65,18 @@ const displayStart = () => {
 };
 displayStart();
 
-const nowPlayingMoviesContainer = document.querySelector(".now-playing-movies-container");
-const upcomingMoviesContainer = document.querySelector(".upcoming-movies-container");
-const topRatedMoviesContainer = document.querySelector(".top-rated-movies-container");
-const popularMoviesContainer = document.querySelector(".popular-movies-container");
+const nowPlayingMoviesContainer = document.querySelector(
+	".now-playing-movies-container"
+);
+const upcomingMoviesContainer = document.querySelector(
+	".upcoming-movies-container"
+);
+const topRatedMoviesContainer = document.querySelector(
+	".top-rated-movies-container"
+);
+const popularMoviesContainer = document.querySelector(
+	".popular-movies-container"
+);
 const mainContainer = document.querySelector(".main-container");
 const randomName = document.querySelector(".random-name");
 
@@ -113,14 +121,34 @@ const homeLink = () => {
 	searchForm.reset();
 	countryForm.reset();
 	countryFlag.innerHTML = "";
-	const nowPlayingMoviesContainer = document.querySelector(".now-playing-movies-container");
-	const upcomingMoviesContainer = document.querySelector(".upcoming-movies-container");
-	const topRatedMoviesContainer = document.querySelector(".top-rated-movies-container");
-	const popularMoviesContainer = document.querySelector(".popular-movies-container");
-	getMovies(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`, nowPlayingMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`, upcomingMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`, popularMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`, topRatedMoviesContainer);
+	const nowPlayingMoviesContainer = document.querySelector(
+		".now-playing-movies-container"
+	);
+	const upcomingMoviesContainer = document.querySelector(
+		".upcoming-movies-container"
+	);
+	const topRatedMoviesContainer = document.querySelector(
+		".top-rated-movies-container"
+	);
+	const popularMoviesContainer = document.querySelector(
+		".popular-movies-container"
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
+		nowPlayingMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
+		upcomingMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`,
+		popularMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`,
+		topRatedMoviesContainer
+	);
 	const mainContainer = document.querySelector(".main-container");
 	const randomName = document.querySelector(".random-name");
 	const randomImage = (data) => {
@@ -141,7 +169,10 @@ const homeLink = () => {
 			console.error(err);
 		}
 	};
-	getRandom(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`, mainContainer);
+	getRandom(
+		`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+		mainContainer
+	);
 };
 
 const restart = () => {
@@ -407,7 +438,9 @@ const getMoviesClick = async (link) => {
 const movieClick = (id) => {
 	history.pushState({ id }, null, `/movie/${id}`);
 	scroll(0, 0);
-	getMoviesClick(`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images,reviews,credits`);
+	getMoviesClick(
+		`https://api.themoviedb.org/3/movie/${id}?api_key=${API_KEY}&append_to_response=videos,images,reviews,credits`
+	);
 };
 
 const displayCastClick = (data) => {
@@ -515,7 +548,9 @@ const getCastClick = async (link) => {
 const castClick = (id) => {
 	history.pushState({ id }, null, `/cast/${id}`);
 	scroll(0, 0);
-	getCastClick(`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,movie`);
+	getCastClick(
+		`https://api.themoviedb.org/3/person/${id}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,movie`
+	);
 };
 
 let page;
@@ -533,7 +568,10 @@ const search = (value, page) => {
 	const searchBack = document.querySelector(".search-back");
 	const searchNext = document.querySelector(".search-next");
 	searchInput.value = value;
-	getMovies(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`, searchContainer)
+	getMovies(
+		`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`,
+		searchContainer
+	)
 		.then((res) => {
 			const totalPages = res.total_pages;
 			if (totalPages == 1) {
@@ -551,7 +589,11 @@ const search = (value, page) => {
 		scroll(0, 0);
 		const searchContainer = document.querySelector(".search-container");
 		page -= 1;
-		history.pushState({ id: value, number: page }, null, `/search/${value}/page/${page}`);
+		history.pushState(
+			{ id: value, number: page },
+			null,
+			`/search/${value}/page/${page}`
+		);
 		if (page == 1) {
 			searchBack.disabled = true;
 			searchNext.disabled = false;
@@ -559,7 +601,10 @@ const search = (value, page) => {
 			searchBack.disabled = false;
 			searchNext.disabled = false;
 		}
-		getMovies(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`, searchContainer);
+		getMovies(
+			`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`,
+			searchContainer
+		);
 	});
 
 	searchNext.addEventListener("click", (e) => {
@@ -567,8 +612,15 @@ const search = (value, page) => {
 		scroll(0, 0);
 		const searchContainer = document.querySelector(".search-container");
 		page += 1;
-		history.pushState({ id: value, number: page }, null, `/search/${value}/page/${page}`);
-		getMovies(`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`, searchContainer)
+		history.pushState(
+			{ id: value, number: page },
+			null,
+			`/search/${value}/page/${page}`
+		);
+		getMovies(
+			`https://api.themoviedb.org/3/search/movie?api_key=${API_KEY}&language=en-US&query=${value}&page=${page}&include_adult=false`,
+			searchContainer
+		)
 			.then((res) => {
 				const totalPages = res.total_pages;
 				if (totalPages == page) {
@@ -585,7 +637,11 @@ const search = (value, page) => {
 
 const searchClick = (value) => {
 	page = 1;
-	history.pushState({ id: value, number: page }, null, `/search/${value}/page/1`);
+	history.pushState(
+		{ id: value, number: page },
+		null,
+		`/search/${value}/page/1`
+	);
 	scroll(0, 0);
 	search(value, page);
 };
@@ -671,38 +727,85 @@ const checkNav = () => {
 countryInput.addEventListener("change", () => {
 	const value = countryInput.value;
 	getFlag(value);
-	const nowPlayingMoviesContainer = document.querySelector(".now-playing-movies-container");
-	const upcomingMoviesContainer = document.querySelector(".upcoming-movies-container");
-	const topRatedMoviesContainer = document.querySelector(".top-rated-movies-container");
-	const popularMoviesContainer = document.querySelector(".popular-movies-container");
+	const nowPlayingMoviesContainer = document.querySelector(
+		".now-playing-movies-container"
+	);
+	const upcomingMoviesContainer = document.querySelector(
+		".upcoming-movies-container"
+	);
+	const topRatedMoviesContainer = document.querySelector(
+		".top-rated-movies-container"
+	);
+	const popularMoviesContainer = document.querySelector(
+		".popular-movies-container"
+	);
 	if (nowPlayingMoviesContainer) {
-		getMovies(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=${value}&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1`, nowPlayingMoviesContainer);
-		getMovies(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=${value}&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1`, upcomingMoviesContainer);
-		getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`, popularMoviesContainer);
-		getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`, topRatedMoviesContainer);
+		getMovies(
+			`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1&region=${value}&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1`,
+			nowPlayingMoviesContainer
+		);
+		getMovies(
+			`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1&region=${value}&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1`,
+			upcomingMoviesContainer
+		);
+		getMovies(
+			`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`,
+			popularMoviesContainer
+		);
+		getMovies(
+			`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`,
+			topRatedMoviesContainer
+		);
 	}
 });
 
 const main = () => {
 	history.pushState({ id: "home" }, null, `/home`);
 	checkNav();
-	getMovies(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`, nowPlayingMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`, upcomingMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`, popularMoviesContainer);
-	getMovies(`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`, topRatedMoviesContainer);
-	getCountry(`https://api.themoviedb.org/3/configuration/countries?api_key=${API_KEY}`);
-	getRandom(`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`, mainContainer);
+	getMovies(
+		`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-US&page=1`,
+		nowPlayingMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=en-US&page=1`,
+		upcomingMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_count.desc&include_adult=false&include_video=false&page=1&vote_count.gte=7000`,
+		popularMoviesContainer
+	);
+	getMovies(
+		`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1&vote_count.gte=3000`,
+		topRatedMoviesContainer
+	);
+	getCountry(
+		`https://api.themoviedb.org/3/configuration/countries?api_key=${API_KEY}`
+	);
+	getRandom(
+		`https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=1`,
+		mainContainer
+	);
 };
 main();
 
 document.addEventListener("click", (e) => {
-	if (e.target && (e.target.classList == "box-img-movie" || e.target.classList == "box-movie" || e.target.classList == "movie-title")) {
+	if (
+		e.target &&
+		(e.target.classList == "box-img-movie" ||
+			e.target.classList == "box-movie" ||
+			e.target.classList == "movie-title")
+	) {
 		movieClick(e.target.id);
 	}
 });
 
 document.addEventListener("click", (e) => {
-	if (e.target && (e.target.classList == "box-img-cast" || e.target.classList == "box-cast" || e.target.classList == "cast-title")) {
+	if (
+		e.target &&
+		(e.target.classList == "box-img-cast" ||
+			e.target.classList == "box-cast" ||
+			e.target.classList == "cast-title")
+	) {
 		castClick(e.target.id);
 	}
 });
@@ -710,9 +813,13 @@ document.addEventListener("click", (e) => {
 window.addEventListener("popstate", (e) => {
 	let link = window.location.href;
 	if (link.includes("movie")) {
-		getMoviesClick(`https://api.themoviedb.org/3/movie/${e.state.id}?api_key=${API_KEY}&append_to_response=videos,images,reviews,credits`);
+		getMoviesClick(
+			`https://api.themoviedb.org/3/movie/${e.state.id}?api_key=${API_KEY}&append_to_response=videos,images,reviews,credits`
+		);
 	} else if (link.includes("cast")) {
-		getCastClick(`https://api.themoviedb.org/3/person/${e.state.id}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,movie`);
+		getCastClick(
+			`https://api.themoviedb.org/3/person/${e.state.id}?api_key=${API_KEY}&language=en-US&append_to_response=movie_credits,movie`
+		);
 	} else if (link.includes("home")) {
 		restart();
 	} else if (link.includes("search")) {
